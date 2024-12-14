@@ -1,5 +1,6 @@
-var started = false;
-setInterval(function() {
+let started = false;
+
+setInterval(() => {
   if (started) return;
   console.log(process.pid);
   started = true;

@@ -1,22 +1,22 @@
-var path = require('path');
-var cp = require('child_process');
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable no-restricted-modules */
+const path = require('node:path');
+const cp = require('node:child_process');
+const test = require('tape');
+const treeKill = require('tree-kill');
+const { psTree } = require('..');
 
-var test  = require('tape');
-var treeKill = require('tree-kill');
-
-var psTree = require('../');
-
-var scripts = {
-  parent: path.join(__dirname, 'exec', 'parent.js'),
-  child: path.join(__dirname, 'exec', 'child.js')
+const scripts = {
+  parent: path.join(__dirname, 'exec', 'parent.cjs'),
+  child: path.join(__dirname, 'exec', 'child.cjs'),
 };
 
-test('Spawn a Parent process which has ten Child processes', function (t) {
+test('Spawn a Parent process which has ten Child processes', function(t) {
   t.timeoutAfter(10000);
-  var parent = cp.spawn('node', [scripts.parent]);
+  const parent = cp.spawn('node', [ scripts.parent ]);
 
-  parent.stdout.on('data', function (data) {
-    psTree(parent.pid, function (error, children) {
+  parent.stdout.on('data', function() {
+    psTree(parent.pid, function(error, children) {
       if (error) {
         t.error(error);
         t.end();
@@ -41,12 +41,12 @@ test('Spawn a Parent process which has ten Child processes', function (t) {
   });
 });
 
-test('Spawn a Child Process which has zero Child processes', function (t) {
+test('Spawn a Child Process which has zero Child processes', function(t) {
   t.timeoutAfter(10000);
-  var child = cp.spawn('node', [scripts.child]);
+  const child = cp.spawn('node', [ scripts.child ]);
 
-  child.stdout.on('data', function (data) {
-    psTree(child.pid, function (error, children) {
+  child.stdout.on('data', function() {
+    psTree(child.pid, function(error, children) {
       if (error) {
         t.error(error);
         t.end();
@@ -71,8 +71,8 @@ test('Spawn a Child Process which has zero Child processes', function (t) {
   });
 });
 
-test('Call psTree without supplying a Callback', function (t) {
-  var errmsg = 'Error: childrenOfPid(pid, callback) expects callback';
+test('Call psTree without supplying a Callback', function(t) {
+  const errmsg = 'Error: childrenOfPid(pid, callback) expects callback';
 
   // Attempt to call psTree without a callback
   try {
@@ -84,10 +84,10 @@ test('Call psTree without supplying a Callback', function (t) {
   t.end();
 });
 
-test('Directly Execute bin/ps-tree.js', function (t) {
-  var child = cp.exec('node ./bin/ps-tree.js', function (error, data) {
+test('Directly Execute bin/ps-tree.cjs', function(t) {
+  cp.exec('node ./bin/ps-tree.cjs', function(error) {
     if (error !== null) {
-      t.error(err);
+      t.error(error);
       t.end();
       return;
     }
