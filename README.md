@@ -61,7 +61,7 @@ psTree(child.pid)
   });
 ```
 
-If you prefer to run **psTree** from the command line, use: `node ./bin/ps-tree.js`
+If you prefer to run **psTree** from the command line, use: `node ./bin/ps-tree.cjs`
 
 ## Cross Platform support
 
