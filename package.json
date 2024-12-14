@@ -79,7 +79,8 @@
   },
   "files": [
     "dist",
-    "src"
+    "src",
+    "bin"
   ],
   "types": "./dist/commonjs/index.d.ts",
   "main": "./dist/commonjs/index.js",
