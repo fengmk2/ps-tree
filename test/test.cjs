@@ -4,7 +4,7 @@ const path = require('node:path');
 const cp = require('node:child_process');
 const test = require('tape');
 const treeKill = require('tree-kill');
-const { psTree } = require('..');
+const { psTree, pstree } = require('..');
 
 const scripts = {
   parent: path.join(__dirname, 'exec', 'parent.cjs'),
@@ -17,6 +17,36 @@ test('Spawn a Parent process which has ten Child processes', function(t) {
 
   parent.stdout.on('data', function() {
     psTree(parent.pid, function(error, children) {
+      if (error) {
+        t.error(error);
+        t.end();
+        return;
+      }
+
+      t.equal(children.length, 10, 'There should be 10 active child processes');
+      if (children.length !== 10) {
+        t.comment(parent.pid.toString());
+        t.comment(JSON.stringify(children, null, 2));
+      }
+
+      treeKill(parent.pid, function(error) {
+        if (error) {
+          t.error(error);
+          t.end();
+          return;
+        }
+        t.end();
+      });
+    });
+  });
+});
+
+test('alias to pstree', function(t) {
+  t.timeoutAfter(10000);
+  const parent = cp.spawn('node', [ scripts.parent ]);
+
+  parent.stdout.on('data', function() {
+    pstree(parent.pid, function(error, children) {
       if (error) {
         t.error(error);
         t.end();

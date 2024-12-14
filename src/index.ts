@@ -107,6 +107,9 @@ function childrenOfPid(pid: number | string): Promise<PSTreeChild[]> {
   });
 }
 
+// alias to pstree
+export const pstree = psTree;
+
 /**
  * Normalizes the given header `str` from the Windows
  * title to the *nix title.
