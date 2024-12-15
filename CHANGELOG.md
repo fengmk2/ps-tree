@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.2](https://github.com/fengmk2/ps-tree/compare/v2.0.1...v2.0.2) (2024-12-15)
+
+
+### Bug Fixes
+
+* psTree ts define ([#3](https://github.com/fengmk2/ps-tree/issues/3)) ([e81c792](https://github.com/fengmk2/ps-tree/commit/e81c792132a07d6bd931edd854ae8af22a80d101))
+
 ## [2.0.1](https://github.com/fengmk2/ps-tree/compare/v2.0.0...v2.0.1) (2024-12-14)
 
 
