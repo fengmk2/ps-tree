@@ -8,7 +8,11 @@ export interface PSTreeChild {
   COMMAND: string;
 }
 
-export function psTree(pid: number | string, callback?: (err: Error | null, children?: PSTreeChild[]) => void) {
+export type Callback = (err: Error | null, children?: PSTreeChild[]) => void;
+
+export function psTree(pid: number | string): Promise<PSTreeChild[]>;
+export function psTree(pid: number | string, callback: Callback): void;
+export function psTree(pid: number | string, callback?: Callback) {
   const promise = childrenOfPid(pid);
   if (!callback) {
     return promise;
