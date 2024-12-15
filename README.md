@@ -5,7 +5,7 @@
 [![Test coverage][codecov-image]][codecov-url]
 [![Known Vulnerabilities][snyk-image]][snyk-url]
 [![npm download][download-image]][download-url]
-[![Node.js Version](https://img.shields.io/node/v/@fengmk2/ps-tree.svg?style=flat)](http://nodejs.org/download/)
+[![Node.js Version](https://img.shields.io/node/v/@fengmk2/ps-tree.svg?style=flat)](https://nodejs.org/en/download/)
 
 [npm-image]: https://img.shields.io/npm/v/@fengmk2/ps-tree.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/@fengmk2/ps-tree
